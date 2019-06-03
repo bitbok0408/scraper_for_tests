@@ -9,7 +9,9 @@ class QuotesSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        for quote in response.xpath("//*/ul[@class='list-group']//li[@class='list-group-item']"):
+        for quote in response.xpath("//*/ul[@class='list-group']//li[@class='list-group-item']/span[@class='label label-info']/text()"):
+            print("QQQQQQ", quote.get())
+            # li = "//*/ul[@class='list-group']//li[@class='list-group-item']"
             # for text in quote.xpath("//li[@class='list-group-item']"):
             #     print("TTTTTTTTTTTTTTTTTTTT", text)
 
@@ -21,3 +23,10 @@ class QuotesSpider(scrapy.Spider):
         # next_page = response.css('li.next a::attr(href)').get()
         # if next_page is not None:
         #     yield response.follow(next_page, callback=self.parse)
+
+
+
+
+        worked_h4_xpath = "//*/div[@class='container']/h4/text()"
+        worked_questions_xpath_without_percent = "//*/ul[@class='list-group']//li[@class='list-group-item']/text()"
+        worked_percent = "//*/ul[@class='list-group']//li[@class='list-group-item']/span[@class='label label-info']/text()"
